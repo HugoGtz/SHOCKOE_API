@@ -3,6 +3,9 @@
   "bugs": {
     "url": "https://github.com/HugoGtz/SHOCKOE_API/issues"
   },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "description": "",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -24,7 +27,7 @@
     "babel-register": "^6.26.0",
     "jest": "^24.9.0",
     "jest-json-schema": "^2.1.0",
-    "nodemon": "^1.19.4",
+    "nodemon": "^1.19.4"
   },
   "homepage": "https://github.com/HugoGtz/SHOCKOE_API#readme",
   "license": "ISC",
