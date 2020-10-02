@@ -6,7 +6,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.5"
   },
   "description": "",
   "devDependencies": {
@@ -29,7 +31,8 @@
     "babel-register": "^6.26.0",
     "jest": "^24.9.0",
     "jest-json-schema": "^2.1.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "sequelize-cli": "^5.5.1"
   },
   "homepage": "https://github.com/HugoGtz/SHOCKOE_API#readme",
   "license": "ISC",
