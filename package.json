@@ -23,7 +23,8 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-register": "^6.26.0",
     "jest": "^24.9.0",
-    "jest-json-schema": "^2.1.0"
+    "jest-json-schema": "^2.1.0",
+    "nodemon": "^1.19.4",
   },
   "homepage": "https://github.com/HugoGtz/SHOCKOE_API#readme",
   "license": "ISC",
