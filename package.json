@@ -39,7 +39,8 @@
     "url": "git+ssh://git@github.com/HugoGtz/SHOCKOE_API.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec babel-node index.js --ignore backup "
   },
   "version": "1.0.0"
 }
