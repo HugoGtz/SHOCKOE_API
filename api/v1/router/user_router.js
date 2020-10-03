@@ -3,6 +3,7 @@ import UserController from 'api/v1/controllers/user_controller'
 
 let router = Router()
 
-router.get('/', UserController.create)
+router.post('/', UserController.create.bind(UserController))
+
 
 export default router
