@@ -30,7 +30,7 @@ let userSchema = {
 
 let usersSchema = {
     type: "array",
-    items: usersSchema
+    items: userSchema
 }
 
 export { userSchema, usersSchema}
