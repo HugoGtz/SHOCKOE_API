@@ -9,15 +9,15 @@ export default class ApiController {
         return this.req.params.id
     }
     
-    params_permit(params) {
+    paramsPermit(params) {
         return this.req.parameters.permit(params).value()
     }
 
-    res_success(data, statusCode = 200) {
+    resSuccess(data, statusCode = 200) {
         return this.__res(data, statusCode)
     }
 
-    res_fail(err, statusCode = 500) {
+    resFail(err, statusCode = 500) {
         return this.__res({
             err: err
         }, statusCode)
