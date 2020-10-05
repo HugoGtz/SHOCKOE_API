@@ -4,7 +4,11 @@ export default class ApiController {
         this.res = null
         this.params = null
     }
-
+    
+    get id() {
+        return this.req.params.id
+    }
+    
     params_permit(params) {
         return this.req.parameters.permit(params).value()
     }
