@@ -51,6 +51,17 @@ class TaskController extends ApiController {
         })
     }
 
+    @functionHandler()
+    destroy(req, res) {
+        Task.findByPk(this.id).then((task) => {
+            return task.destroy()
+        }).then((task) => {
+            return this.resSuccess(task)
+        }).catch((err) => {
+            return this.resFail(String(err))
+        })
+    }
+
     get queryParams() {
         let queryParams = like(['name', 'description'], this.taskParams())
         return date(['due_date'], this.taskParams(), queryParams)
