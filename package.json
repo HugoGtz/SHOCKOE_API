@@ -9,6 +9,7 @@
     "chai-http": "^4.3.0",
     "chai-json-schema": "^1.5.1",
     "cors": "^2.8.5",
+    "lodash": "^4.17.15",
     "express": "^4.17.1",
     "md5": "^2.3.0",
     "morgan": "^1.10.0",
