@@ -18,6 +18,15 @@ class UserController extends ApiController {
     }
 
     @functionHandler()
+    show(req, res) {
+        User.findByPk(this.id).then((user) => {
+            return this.res_success(user)
+        }).catch((err) => {
+            return this.res_fail(String(err))
+        })
+    }
+
+    @functionHandler()
     create(req, res) {
         User.create(this.userParams).then((user) => {
             return this.res_success(user)
