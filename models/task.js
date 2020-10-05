@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         due_date: DataTypes.DATE,
         completed: DataTypes.BOOLEAN,
         name: DataTypes.STRING,
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'User',
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     Task.associate = function(models) {
         Task.belongsTo(models.User, {
-            foreignKey: 'user_id'
+            foreignKey: 'userId'
         });
     };
     return Task;

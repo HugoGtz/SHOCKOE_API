@@ -19,7 +19,7 @@
 
      User.associate = function(models) {
          User.hasMany(models.Task, {
-             foreignKey: 'user_id'
+             foreignKey: 'userId'
          })
      };
 
