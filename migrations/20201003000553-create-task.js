@@ -15,12 +15,13 @@ module.exports = {
         type: Sequelize.DATE
       },
       completed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       name: {
         type: Sequelize.STRING
       },
-      user_id: {
+      userId: {
           type: Sequelize.INTEGER,
           references: {
               model: 'Users',
