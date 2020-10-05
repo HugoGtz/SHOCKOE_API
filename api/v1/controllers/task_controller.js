@@ -23,6 +23,15 @@ class TaskController extends ApiController {
     }
 
     @functionHandler()
+    show(req, res) {
+        Task.findByPk(this.id).then((task) => {
+            return this.resSuccess(task)
+        }).catch((err) => {
+            return this.resFail(String(err))
+        })
+    }
+
+    @functionHandler()
     create(req, res) {
         Task.create(this.taskParams()).then((task) => {
             return this.resSuccess(task)
