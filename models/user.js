@@ -1,26 +1,31 @@
-'use strict';
-import hash_password from 'helpers/hash_password'
+ 'use strict';
+ import hash_password from 'helpers/hash_password'
 
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
-        name: DataTypes.STRING,
-        user_name: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            unique: true
-        },
-        password: DataTypes.STRING
-    }, {});
-    
-    User.associate = function(models) {
-        User.hasMany(models.Task, {
-            foreignKey: 'user_id'
-        })
-    };
+ module.exports = (sequelize, DataTypes) => {
+     const User = sequelize.define('User', {
+         name: DataTypes.STRING,
+         username: {
+             type: DataTypes.TEXT,
+             allowNull: false,
+             unique: true
+         },
+         password: DataTypes.STRING
+     }, {
+         indexes: [{
+             unique: true,
+             fields: ['username']
+         }]
+     });
 
-    User.addHook('afterValidate', 'hashPassword', (user, options) => {
-        user.password = hash_password(user.password)
-    });
+     User.associate = function(models) {
+         User.hasMany(models.Task, {
+             foreignKey: 'user_id'
+         })
+     };
 
-    return User;
-}
+     User.addHook('afterValidate', 'hashPassword', (user, options) => {
+         user.password = hash_password(user.password)
+     });
+
+     return User;
+ }
