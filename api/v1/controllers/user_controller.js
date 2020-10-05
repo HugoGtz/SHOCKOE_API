@@ -35,6 +35,17 @@ class UserController extends ApiController {
         })
     }
 
+    @functionHandler()
+    update(req, res) {
+        User.findByPk(this.id).then((user) => {
+            return user.update(this.userParams)
+        }).then((user) => {
+            return this.res_success(user)
+        }).catch((err) => {
+            return this.res_fail(String(err))
+        })
+    }
+
     get userParams() {
         let params = ['name', 'username', 'password']
         return this.params_permit(params)
