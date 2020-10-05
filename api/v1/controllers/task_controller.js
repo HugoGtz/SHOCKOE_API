@@ -1,7 +1,7 @@
 import ApiController from './api_controller'
 import functionHandler from 'helpers/function_handler'
 import { Task } from 'models'
-
+import { like, date } from 'helpers/query_builder'
 
 class TaskController extends ApiController {
     constructor() {
@@ -9,12 +9,31 @@ class TaskController extends ApiController {
     }
 
     @functionHandler()
-    create(req, res) {
-        Task.create(this.taskParams()).then((user) => {
-            return this.resSuccess(user)
+    index(req, res) {
+        Task.findAll({
+            where: this.queryParams,
+            order: [
+                ['due_date', 'DESC']
+            ],
+        }).then((tasks) => {
+            return this.resSuccess(tasks)
         }).catch((err) => {
             return this.resFail(String(err))
         })
+    }
+
+    @functionHandler()
+    create(req, res) {
+        Task.create(this.taskParams()).then((task) => {
+            return this.resSuccess(task)
+        }).catch((err) => {
+            return this.resFail(String(err))
+        })
+    }
+
+    get queryParams() {
+        let queryParams = like(['name', 'description'], this.taskParams())
+        return date(['due_date'], this.taskParams(), queryParams)
     }
 
     taskParams(addParams=[]) {
