@@ -54,7 +54,8 @@
     "url": "git+ssh://git@github.com/HugoGtz/SHOCKOE_API.git"
   },
   "scripts": {
-    "test": "jest",
+    "test:docker": "docker/entrypoint_test.sh",
+    "test": "jest --ci",
     "test:watch": "jest --watch",
     "dev": "nodemon --exec babel-node index.js --ignore backup "
   },
