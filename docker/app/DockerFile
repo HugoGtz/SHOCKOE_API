@@ -1,0 +1,20 @@
+FROM node:10.8.0
+
+ENV NODE_ENV=development
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY . .
+
+RUN npm install
+
+# Bundle app source
+RUN npx babel -d ./build --ignore ./node_modules --ignore ./test . -s --copy-files
+RUN rm -rf build/test/
+EXPOSE 3000
+
+CMD [ "docker/entrypoint.sh" ]
