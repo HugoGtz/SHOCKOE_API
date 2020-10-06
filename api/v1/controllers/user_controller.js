@@ -1,7 +1,7 @@
 import ApiController from './api_controller'
 import functionHandler from 'helpers/function_handler'
-import { User } from 'models'
-
+import { User, Task } from 'models'
+import queryParams from './mixins/task_query'
 
 class UserController extends ApiController {
     constructor() {
@@ -57,9 +57,30 @@ class UserController extends ApiController {
         })
     }
 
+    @functionHandler()
+    tasks(req, res) {
+        Task.findAll({
+                where: queryParams(this.taskParams()),
+                order: [
+                    ['due_date', 'DESC']
+                ]
+            })
+            .then((userTasks) => {
+                return this.resSuccess(userTasks)
+            })
+            .catch((err) => {
+                return this.resFail(String(err))
+            })
+    }
+
     get userParams() {
         let params = ['name', 'username', 'password']
         return this.paramsPermit(params)
+    }
+
+    taskParams(addParams=[]) {
+        let params = ['name', 'due_date', 'description']
+        return this.paramsPermit(params.concat(addParams))
     }
 }
 
