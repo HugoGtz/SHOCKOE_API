@@ -1,7 +1,7 @@
 import ApiController from './api_controller'
 import functionHandler from 'helpers/function_handler'
 import { Task } from 'models'
-import { like, date } from 'helpers/query_builder'
+import queryParams from './mixins/task_query'
 
 class TaskController extends ApiController {
     constructor() {
@@ -11,7 +11,7 @@ class TaskController extends ApiController {
     @functionHandler()
     index(req, res) {
         Task.findAll({
-            where: this.queryParams,
+            where: queryParams(this.taskParams()),
             order: [
                 ['due_date', 'DESC']
             ],
@@ -43,7 +43,7 @@ class TaskController extends ApiController {
     @functionHandler()
     update(req, res) {
         Task.findByPk(this.id).then((task) => {
-            return task.update(this.taskParams(['completed']))
+            return task.update(this.taskParams(['completed', 'userId']))
         }).then((task) => {
             return this.resSuccess(task)
         }).catch((err) => {
@@ -60,11 +60,6 @@ class TaskController extends ApiController {
         }).catch((err) => {
             return this.resFail(String(err))
         })
-    }
-
-    get queryParams() {
-        let queryParams = like(['name', 'description'], this.taskParams())
-        return date(['due_date'], this.taskParams(), queryParams)
     }
 
     taskParams(addParams=[]) {
