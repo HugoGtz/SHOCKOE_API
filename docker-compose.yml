@@ -1,0 +1,33 @@
+version: '3'
+
+volumes:
+  shockoe_api:
+  db_socket:
+services:
+  api:
+    container_name: shockoe_api
+    env_file:
+      - ./.env
+    tty: true
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: docker/app/DockerFile
+    ports:
+      - 80:3000/tcp
+    volumes:
+      - .:/shockoe_api
+  db:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - "/tmp/:/var/run/mysqld/"
+      - "./.mysql-data/db:/var/lib/mysql"
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
