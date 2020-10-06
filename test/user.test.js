@@ -2,6 +2,7 @@ import chai from 'chai'
 import fs from 'fs'
 import { request, app } from './test_core'
 import { userSchema, usersSchema } from './schemas/user'
+import { tasksSchema } from './schemas/task'
 
 const { expect } = chai;
 
@@ -37,6 +38,15 @@ describe('Users', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 expect(res.body).to.be.jsonSchema(userSchema)
+                done()
+            })
+    })
+
+    it('Retrieve User Tasks', (done) => {
+        request(app).get(`/api/v1/users/${user.id}/tasks`)
+            .end((err, res) => {
+                expect(res).to.have.status(200)
+                expect(res.body).to.be.jsonSchema(tasksSchema)
                 done()
             })
     })
